@@ -86,5 +86,5 @@ def main():
     chooses.get(len(sys.argv))()
 
 
-Tool("/Users/xubowei/Coding/project/ZCGL2/back/src/main/java/org/cl/zcgl", "entity", "repository")
-# main()
+# Tool("/Users/xubowei/Coding/project/ZCGL2/back/src/main/java/org/cl/zcgl", "entity", "repository")
+main()
