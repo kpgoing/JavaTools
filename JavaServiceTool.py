@@ -16,9 +16,10 @@ def Tool(rootDir, entityFile, serviceFile, javaPackage="None", entityNameFlag="E
         print rootDir + "不存在!"
     elif not os.path.exists(entityDir):
         print entityDir + "不存在!"
-    elif not os.path.exists(serviceDir):
-        print serviceDir + "不存在!"
     else:
+        if not os.path.exists(serviceDir):
+            print serviceDir + "不存在!,程序自动创建."
+            os.mkdir(serviceDir)
         if javaPackage is "None":
             findPath = os.sep + "main" + os.sep + "java"
             index = rootDir.find(findPath)

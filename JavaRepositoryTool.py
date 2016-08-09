@@ -7,8 +7,8 @@ ISOTIMEFORMAT = '%Y/%m/%d'
 
 
 def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag="Entity",
-         respositoryNameFlag="Repository"):
-    global respositoryNameDir
+         repositoryNameFlag="Repository"):
+    global repositoryNameDir
     entityNameFlagWithJavaLength = len(entityNameFlag + ".java")
     entityDir = os.path.join(rootDir, entityFile)
     repositoryDir = os.path.join(rootDir, repositoryFile)
@@ -16,9 +16,10 @@ def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag
         print rootDir + "不存在!"
     elif not os.path.exists(entityDir):
         print entityDir + "不存在!"
-    elif not os.path.exists(repositoryDir):
-        print repositoryDir + "不存在!"
     else:
+        if not os.path.exists(repositoryDir):
+            print repositoryDir + "不存在!,程序自动创建."
+            os.mkdir(repositoryDir)
         if javaPackage is "None":
             findPath = os.sep + "main" + os.sep + "java"
             index = rootDir.find(findPath)
@@ -37,12 +38,12 @@ def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag
         # 开始创建
         for entityName in entityNames:
             try:
-                respositoryName = entityName + respositoryNameFlag
-                respositoryNameDir = os.path.join(repositoryDir, respositoryName + ".java")
-                if os.path.exists(respositoryNameDir):
-                    print  respositoryNameDir + "文件已存在,进行跳过处理!"
+                repositoryName = entityName + repositoryNameFlag
+                repositoryNameDir = os.path.join(repositoryDir, repositoryName + ".java")
+                if os.path.exists(repositoryNameDir):
+                    print  repositoryNameDir + "文件已存在,进行跳过处理!"
                 else:
-                    file = open(respositoryNameDir, "a")
+                    file = open(repositoryNameDir, "a")
                     file.write("package " + javaPackage + "." + repositoryFile + ";\n"
                             "import " + javaPackage + "." + entityFile + "." + entityName + entityNameFlag + ";\n"
                            "import org.springframework.data.jpa.repository.JpaRepository;\n"
@@ -51,12 +52,12 @@ def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag
                            "* 生成于" + time.strftime(
                             ISOTIMEFORMAT, time.localtime()) + "\n"
                            "*/\n"
-                           "public interface " + respositoryName + " extends JpaRepository<" + entityName + entityNameFlag + ",Integer> {\n"
+                           "public interface " + repositoryName + " extends JpaRepository<" + entityName + entityNameFlag + ",Integer> {\n"
                                                                                                                                                                  "\n}")
-                    print respositoryNameDir + "写入成功!"
+                    print repositoryNameDir + "写入成功!"
                     file.close()
             except IOError as err:
-                print respositoryNameDir + "写入失败!"
+                print repositoryNameDir + "写入失败!"
 
 
 def Choose1():
