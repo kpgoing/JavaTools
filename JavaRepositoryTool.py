@@ -44,14 +44,14 @@ def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag
                 else:
                     file = open(respositoryNameDir, "a")
                     file.write("package " + javaPackage + "." + repositoryFile + ";\n"
-                                                                                  "import " + javaPackage + "." + entityFile + "." + entityName + entityNameFlag + ";\n"
-                                                                                                                                                                   "import org.springframework.data.jpa.repository.JpaRepository;\n"
-                                                                                                                                                                   "\n\n"
-                                                                                                                                                                   "/**\n"
-                                                                                                                                                                   "* 生成于" + time.strftime(
+                            "import " + javaPackage + "." + entityFile + "." + entityName + entityNameFlag + ";\n"
+                           "import org.springframework.data.jpa.repository.JpaRepository;\n"
+                           "\n\n"
+                           "/**\n"
+                           "* 生成于" + time.strftime(
                             ISOTIMEFORMAT, time.localtime()) + "\n"
-                                                               "*/\n"
-                                                               "public interface " + respositoryName + " extends JpaRepository<" + entityName + entityNameFlag + ",Integer>{\n"
+                           "*/\n"
+                           "public interface " + respositoryName + " extends JpaRepository<" + entityName + entityNameFlag + ",Integer> {\n"
                                                                                                                                                                  "\n}")
                     print respositoryNameDir + "写入成功!"
                     file.close()
