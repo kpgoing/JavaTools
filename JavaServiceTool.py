@@ -56,6 +56,7 @@ def Tool(rootDir, entityFile, serviceFile, javaPackage="None", entityNameFlag="E
                     file = open(serviceNameDir, "a")
                     file.write( "package " + javaPackage + "." + serviceFile + ";\n"
                                 "import " + javaPackage + "." + entityFile + "." + entityName + entityNameFlag + ";\n"
+                                "import org.springframework.stereotype.Service;\n"
                                 "\n\n"
                                 "/**\n"
                                 "* 生成于" + time.strftime(ISOTIMEFORMAT, time.localtime()) + "\n"
