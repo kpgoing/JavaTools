@@ -21,13 +21,13 @@ def Tool(rootDir, entityFile, repositoryFile, javaPackage="None", entityNameFlag
             print repositoryDir + "不存在!,程序自动创建."
             os.mkdir(repositoryDir)
         if javaPackage is "None":
-            findPath = os.sep + "main" + os.sep + "jafdva"
+            findPath = os.sep + "main" + os.sep + "java"
             index = rootDir.find(findPath)
             while index == -1:
                 javaPackage = raw_input("请输入entity包的上一级包全名,比如entity包全称为org.cl.zc.entity,则输入org.cl.zc: ")
                 index = rootDir.find(javaPackage.replace(".", os.sep))
             else:
-                javaPackage = rootDir[index + len(findPath) + 1:]
+                javaPackage = rootDir[index + len(findPath) + 1: -1]
                 javaPackage = javaPackage.replace(os.sep, ".")
             print "java包为: " + javaPackage
         entityNames = []
@@ -86,5 +86,5 @@ def main():
     chooses.get(len(sys.argv))()
 
 
-# Tool("/Users/xubowei/Coding/project/ZCGL2/back/src/main/java/org/cl/zcgl", "entity", "repository")
-main()
+Tool("/Users/xubowei/Coding/learn/JAVA/spring/learnBootOne/src/main/java/club/xubowei/", "entity", "repository")
+# main()

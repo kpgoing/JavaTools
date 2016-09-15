@@ -27,7 +27,7 @@ def Tool(rootDir, entityFile, serviceFile, javaPackage="None", entityNameFlag="E
                 javaPackage = raw_input("请输入entity包的上一级包全名,比如entity包全称为org.cl.zc.entity,则输入org.cl.zc: ")
                 index = rootDir.find(javaPackage.replace(".", os.sep))
             else:
-                javaPackage = rootDir[index + len(findPath) + 1:]
+                javaPackage = rootDir[index + len(findPath) + 1: -1 ]
                 javaPackage = javaPackage.replace(os.sep, ".")
             print "java包为: " + javaPackage
         entityNames = []
